@@ -1,0 +1,155 @@
+<!doctype html> 
+<html lang="en"> 
+  <head> 
+    <meta charset="utf-8"> 
+    <title>VitSecureDrive | Encrypted Upload System</title> 
+    <style> 
+      * { 
+        box-sizing: border-box; 
+      } 
+ 
+      body { 
+        font-family: "Poppins", Arial, sans-serif; 
+        background: linear-gradient(135deg, #1e3c72, #2a5298); 
+        color: #333; 
+        margin: 0; 
+        padding: 0; 
+        display: flex; 
+        flex-direction: column; 
+        align-items: center; 
+        min-height: 100vh; 
+      } 
+ 
+      header { 
+        background: rgba(255, 255, 255, 0.1); 
+        width: 100%; 
+        text-align: center; 
+        padding: 25px 0; 
+        color: #fff; 
+        font-size: 1.8rem; 
+        font-weight: 600; 
+        letter-spacing: 1px; 
+        backdrop-filter: blur(6px); 
+      } 
+ 
+      main { 
+        display: flex; 
+        flex-direction: column; 
+        align-items: center; 
+        margin-top: 40px; 
+        width: 100%; 
+      } 
+ 
+      .card { 
+        background: #fff; 
+        border-radius: 16px; 
+        box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2); 
+        width: 700px; 
+        padding: 25px 30px; 
+        margin-bottom: 30px; 
+        transition: transform 0.3s ease, box-shadow 0.3s ease; 
+      } 
+ 
+      .card:hover { 
+        transform: translateY(-4px); 
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25); 
+      } 
+ 
+      h2, h3 { 
+        text-align: center; 
+        color: #2c3e50; 
+      } 
+ 
+      p { 
+        font-size: 0.95rem; 
+        color: #555; 
+        text-align: center; 
+      } 
+ 
+      form { 
+        display: flex; 
+        flex-direction: column; 
+        margin-top: 10px; 
+      } 
+ 
+      label { 
+        margin: 10px 0 5px; 
+        font-weight: 500; 
+      } 
+ 
+      input[type="file"], input[type="password"] { 
+        padding: 8px; 
+        border-radius: 6px; 
+        border: 1px solid #ccc; 
+      } 
+ 
+      button { 
+        margin-top: 15px; 
+        padding: 12px; 
+        background: linear-gradient(90deg, #007BFF, #00BFFF); 
+        color: white; 
+        border: none; 
+        border-radius: 8px; 
+        cursor: pointer; 
+        font-size: 1rem; 
+        transition: 0.3s; 
+      } 
+ 
+      button:hover { 
+        background: linear-gradient(90deg, #0056b3, #0095ff); 
+        transform: translateY(-1px); 
+      } 
+ 
+      a { 
+        color: #007BFF; 
+        font-weight: 500; 
+        text-decoration: none; 
+      } 
+ 
+      a:hover { 
+        text-decoration: underline; 
+      } 
+    </style> 
+  </head> 
+ 
+  <body> 
+    <header>SecureDrive – Encrypted File Upload System</header> 
+ 
+    <main> 
+      <div class="card"> 
+        <h2>Upload & Encrypt</h2> 
+        <p> 
+          1. Click <a href="/authorize" target="_blank">Authorize Google Drive</a><br> 
+          2. Choose a file and click Upload 
+        </p> 
+ 
+        <form method="POST" action="/upload" enctype="multipart/form-data"> 
+          <label>Select file:</label> 
+          <input type="file" name="file" required> 
+ 
+          <button type="submit">Scan → AES Encrypt → RSA Encrypt Key → 
+Upload</button> 
+        </form> 
+      </div> 
+ 
+      <div class="card"> 
+        <h3>Decrypt Uploaded Files</h3> 
+        <p>Upload the <b>.enc</b>, <b>.key.enc</b>, and <b>private.pem</b> files to decrypt 
+securely.</p> 
+ 
+        <form method="POST" action="/decrypt" enctype="multipart/form-data"> 
+          <label>.enc file:</label> 
+          <input type="file" name="encfile" required> 
+ 
+          <label>.key.enc file:</label> 
+          <input type="file" name="keyfile" required> 
+ 
+          <label>private.pem:</label> 
+          <input type="file" name="private" required> 
+ 
+          <button type="submit">Decrypt & Download</button> 
+        </form> 
+      </div> 
+    </main> 
+  </body> 
+</html>
